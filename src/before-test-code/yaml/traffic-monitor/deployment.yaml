@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traffic-monitor-deployment
+  namespace: hk-sched
+  labels:
+    app: traffic-monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traffic-monitor
+  template:
+    metadata:
+      labels:
+        app: traffic-monitor
+    spec:
+      tolerations:
+      - key: "node-role.kubernetes.io/control-plane"
+        operator: "Exists"
+        effect: "NoSchedule"
+      containers:
+      - name: traffic-monitor
+        image: hokunpark/traffic-monitor:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 13000
+        command: ["/traffic-monitor"]

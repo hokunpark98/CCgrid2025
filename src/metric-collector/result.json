@@ -1,0 +1,110 @@
+{
+    "namespace": "pair",
+    "components": [
+        {
+            "component": "frontend-pair",
+            "pods": [
+                {
+                    "pod": "frontend-pair-worker1-9656c64c6-qfg2w",
+                    "podIP": "172.20.235.176",
+                    "podPort": 12001,
+                    "cpuUtil": 0.3127,
+                    "requests": 0,
+                    "worker": "worker1",
+                    "frequency": 4.5,
+                    "cpuRequest": 510
+                },
+                {
+                    "pod": "frontend-pair-worker2-8569d4669f-kc47w",
+                    "podIP": "172.31.233.199",
+                    "podPort": 12001,
+                    "cpuUtil": 0.3903,
+                    "requests": 0,
+                    "worker": "worker2",
+                    "frequency": 4.5,
+                    "cpuRequest": 510
+                },
+                {
+                    "pod": "frontend-pair-worker3-655c586b5d-78qs4",
+                    "podIP": "172.24.182.60",
+                    "podPort": 12001,
+                    "cpuUtil": 0.6758,
+                    "requests": 0,
+                    "worker": "worker3",
+                    "frequency": 2.5,
+                    "cpuRequest": 510
+                }
+            ]
+        },
+        {
+            "component": "load-generator",
+            "pods": [
+                {
+                    "pod": "load-generator-worker1-759888dfc9-7sbs6",
+                    "podIP": "172.20.235.168",
+                    "podPort": 12000,
+                    "cpuUtil": 0.3507,
+                    "requests": 0,
+                    "worker": "worker1",
+                    "frequency": 4.5,
+                    "cpuRequest": 510
+                }
+            ]
+        },
+        {
+            "component": "trigono",
+            "pods": [
+                {
+                    "pod": "trigono-worker1-1-655b665c6c-fdcn7",
+                    "podIP": "172.20.235.177",
+                    "podPort": 12002,
+                    "cpuUtil": 0.1149,
+                    "requests": 0,
+                    "worker": "worker1",
+                    "frequency": 4.5,
+                    "cpuRequest": 310
+                },
+                {
+                    "pod": "trigono-worker2-568dc6455b-vlfjs",
+                    "podIP": "172.31.233.201",
+                    "podPort": 12002,
+                    "cpuUtil": 0.1283,
+                    "requests": 0,
+                    "worker": "worker2",
+                    "frequency": 4.5,
+                    "cpuRequest": 310
+                },
+                {
+                    "pod": "trigono-worker3-1-599978479c-cpktp",
+                    "podIP": "172.24.182.61",
+                    "podPort": 12002,
+                    "cpuUtil": 0.2341,
+                    "requests": 0,
+                    "worker": "worker3",
+                    "frequency": 2.5,
+                    "cpuRequest": 310
+                },
+                {
+                    "pod": "trigono-worker3-2-599978479c-rdr7v",
+                    "podIP": "172.24.182.62",
+                    "podPort": 12002,
+                    "cpuUtil": 0.2608,
+                    "requests": 0,
+                    "worker": "worker3",
+                    "frequency": 2.5,
+                    "cpuRequest": 310
+                },
+                {
+                    "pod": "trigono-worker4-6857596fdb-q82kk",
+                    "podIP": "172.22.33.37",
+                    "podPort": 12002,
+                    "cpuUtil": 0.2663,
+                    "requests": 0,
+                    "worker": "worker4",
+                    "frequency": 2.5,
+                    "cpuRequest": 310
+                }
+            ]
+        }
+    ]
+}

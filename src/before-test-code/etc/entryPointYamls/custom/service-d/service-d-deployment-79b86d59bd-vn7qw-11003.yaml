@@ -1,0 +1,21 @@
+
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: service-d-deployment-79b86d59bd-vn7qw-11003
+  namespace: custom
+spec:
+  hosts:
+  - service-d-deployment-79b86d59bd-vn7qw
+  addresses:
+  - 172.24.182.16
+  ports:
+  - number: 11003
+    name: http
+    protocol: HTTP
+  resolution: STATIC
+  location: MESH_INTERNAL
+  endpoints:
+  - address: 172.24.182.16
+    ports:
+      http: 11003

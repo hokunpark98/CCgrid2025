@@ -1,0 +1,110 @@
+Log start time: 2024-09-05 17:41:23
+---------------------------------------------
+
+
+Component Graph:
+  Components:
+    - service-d
+  Links:
+    - [service-d -> service-e]
+
+    - service-c
+  Links:
+    - [service-c -> service-d]
+
+    - service-a
+  Links:
+    - [service-a -> service-b]
+
+    - service-b
+  Links:
+    - [service-b -> service-c]
+
+Component to Pod Map:
+  Comonent:service-e
+    [service-e-deployment-5b7f57b8c-d996n, , , ]
+    [service-e-deployment-5b7f57b8c-vspbk, , , ]
+    [service-e-deployment-5b7f57b8c-sgg8m, , , ]
+    [service-e-deployment-5b7f57b8c-cs6tb, , , ]
+  Comonent:service-d
+    [service-d-deployment-79b86d59bd-t9f8m, , , ]
+    [service-d-deployment-79b86d59bd-bxhs9, , , ]
+    [service-d-deployment-79b86d59bd-j6dgj, , , ]
+    [service-d-deployment-79b86d59bd-4hzqh, , , ]
+    [service-d-deployment-79b86d59bd-v9zqk, , , ]
+  Comonent:service-a
+    [service-a-deployment-696cb64c9-5446p, , , ]
+    [service-a-deployment-696cb64c9-7wb98, , , ]
+    [service-a-deployment-696cb64c9-k5jch, , , ]
+  Comonent:service-b
+    [service-b-deployment-5b99db849d-qh768, , , ]
+    [service-b-deployment-5b99db849d-k9lwt, , , ]
+    [service-b-deployment-5b99db849d-f4mgj, , , ]
+    [service-b-deployment-5b99db849d-5v828, , , ]
+  Comonent:service-c
+    [service-c-deployment-57cd84fbfc-84vkh, , , ]
+    [service-c-deployment-57cd84fbfc-jcg5j, , , ]
+
+Request Count Per Pod:
+  Component: service-c
+    Pod: service-c-deployment-57cd84fbfc-jcg5j, Request Count: 0
+    Pod: service-c-deployment-57cd84fbfc-84vkh, Request Count: 0
+  Component: service-e
+    Pod: service-e-deployment-5b7f57b8c-d996n, Request Count: 0
+    Pod: service-e-deployment-5b7f57b8c-vspbk, Request Count: 0
+    Pod: service-e-deployment-5b7f57b8c-sgg8m, Request Count: 0
+    Pod: service-e-deployment-5b7f57b8c-cs6tb, Request Count: 0
+  Component: service-d
+    Pod: service-d-deployment-79b86d59bd-t9f8m, Request Count: 0
+    Pod: service-d-deployment-79b86d59bd-bxhs9, Request Count: 0
+    Pod: service-d-deployment-79b86d59bd-j6dgj, Request Count: 0
+    Pod: service-d-deployment-79b86d59bd-4hzqh, Request Count: 0
+    Pod: service-d-deployment-79b86d59bd-v9zqk, Request Count: 0
+  Component: service-a
+    Pod: service-a-deployment-696cb64c9-5446p, Request Count: 0
+    Pod: service-a-deployment-696cb64c9-7wb98, Request Count: 0
+    Pod: service-a-deployment-696cb64c9-k5jch, Request Count: 0
+  Component: service-b
+    Pod: service-b-deployment-5b99db849d-qh768, Request Count: 0
+    Pod: service-b-deployment-5b99db849d-k9lwt, Request Count: 0
+    Pod: service-b-deployment-5b99db849d-f4mgj, Request Count: 0
+    Pod: service-b-deployment-5b99db849d-5v828, Request Count: 0
+
+Request Duration Per Pod:
+  Component: service-e
+  Component: service-d
+  Component: service-b
+  Component: service-c
+
+CPU Utilization Per Pod:
+  Component: service-e
+    Pod: service-e-deployment-5b7f57b8c-d996n, CPU Utilization: 2%
+    Pod: service-e-deployment-5b7f57b8c-vspbk, CPU Utilization: 2%
+    Pod: service-e-deployment-5b7f57b8c-sgg8m, CPU Utilization: 2%
+    Pod: service-e-deployment-5b7f57b8c-cs6tb, CPU Utilization: 2%
+  Component: service-d
+    Pod: service-d-deployment-79b86d59bd-t9f8m, CPU Utilization: 2%
+    Pod: service-d-deployment-79b86d59bd-bxhs9, CPU Utilization: 2%
+    Pod: service-d-deployment-79b86d59bd-j6dgj, CPU Utilization: 2%
+    Pod: service-d-deployment-79b86d59bd-4hzqh, CPU Utilization: 2%
+    Pod: service-d-deployment-79b86d59bd-v9zqk, CPU Utilization: 2%
+  Component: service-a
+    Pod: service-a-deployment-696cb64c9-5446p, CPU Utilization: 2%
+    Pod: service-a-deployment-696cb64c9-7wb98, CPU Utilization: 2%
+    Pod: service-a-deployment-696cb64c9-k5jch, CPU Utilization: 2%
+  Component: service-b
+    Pod: service-b-deployment-5b99db849d-qh768, CPU Utilization: 2%
+    Pod: service-b-deployment-5b99db849d-k9lwt, CPU Utilization: 2%
+    Pod: service-b-deployment-5b99db849d-f4mgj, CPU Utilization: 2%
+    Pod: service-b-deployment-5b99db849d-5v828, CPU Utilization: 2%
+  Component: service-c
+    Pod: service-c-deployment-57cd84fbfc-84vkh, CPU Utilization: 2%
+    Pod: service-c-deployment-57cd84fbfc-jcg5j, CPU Utilization: 2%
+
+Node CPU Hz:
+  NodeName: 192.168.0.14:9100, Hertz: 30
+  NodeName: 192.168.0.12:9100, Hertz: 47
+  NodeName: 192.168.0.13:9100, Hertz: 30
+  NodeName: 192.168.0.11:9100, Hertz: 47
+  NodeName: 192.168.0.10:9100, Hertz: 47
+

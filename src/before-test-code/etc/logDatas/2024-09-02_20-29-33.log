@@ -1,0 +1,198 @@
+Log start time: 2024-09-02 20:29:33
+---------------------------------------------
+
+
+Component Graph:
+  Components:
+    - service-a
+  Links:
+    - [service-a -> service-b]
+
+    - service-b
+  Links:
+    - [service-b -> service-c]
+
+    - service-d
+  Links:
+    - [service-d -> service-e]
+
+    - service-c
+  Links:
+    - [service-c -> service-d]
+
+Component to Pod Map:
+  Comonent:service-a
+    [service-a-deployment-696cb64c9-6q8jb, 172.24.182.28, worker3, 192.168.0.32]
+    [service-a-deployment-696cb64c9-rhlhw, 172.20.235.161, worker1, 192.168.0.37]
+    [service-a-deployment-696cb64c9-x46mt, 172.31.71.242, worker5, 192.168.0.3]
+  Comonent:service-d
+    [service-d-deployment-79b86d59bd-jgj5h, 172.20.235.162, worker1, 192.168.0.37]
+    [service-d-deployment-79b86d59bd-fk7tl, 172.31.233.208, worker2, 192.168.0.10]
+    [service-d-deployment-79b86d59bd-kxhjk, 172.24.182.30, worker3, 192.168.0.32]
+    [service-d-deployment-79b86d59bd-9h2qn, 172.22.33.26, worker4, 192.168.0.5]
+    [service-d-deployment-79b86d59bd-9j8vt, 172.31.71.244, worker5, 192.168.0.3]
+  Comonent:service-e
+    [service-e-deployment-5b7f57b8c-wsztz, 172.31.233.209, worker2, 192.168.0.10]
+    [service-e-deployment-5b7f57b8c-h8gxc, 172.20.235.163, worker1, 192.168.0.37]
+    [service-e-deployment-5b7f57b8c-kzvq8, 172.31.71.245, worker5, 192.168.0.3]
+    [service-e-deployment-5b7f57b8c-24p2v, 172.24.182.31, worker3, 192.168.0.32]
+  Comonent:service-b
+    [service-b-deployment-5b99db849d-cxjjn, 172.22.33.25, worker4, 192.168.0.5]
+    [service-b-deployment-5b99db849d-wqbsc, 172.31.71.243, worker5, 192.168.0.3]
+    [service-b-deployment-5b99db849d-slv9l, 172.24.182.29, worker3, 192.168.0.32]
+    [service-b-deployment-5b99db849d-42tnp, 172.20.235.160, worker1, 192.168.0.37]
+  Comonent:service-c
+    [service-c-deployment-57cd84fbfc-qjmn4, 172.31.233.207, worker2, 192.168.0.10]
+    [service-c-deployment-57cd84fbfc-ftmnj, 172.31.71.241, worker5, 192.168.0.3]
+
+Request Count Per Pod:
+  Component: service-d
+    Pod: service-d-deployment-79b86d59bd-jgj5h, Request Count: 476
+    Pod: service-d-deployment-79b86d59bd-fk7tl, Request Count: 430
+    Pod: service-d-deployment-79b86d59bd-kxhjk, Request Count: 457
+    Pod: service-d-deployment-79b86d59bd-9h2qn, Request Count: 458
+    Pod: service-d-deployment-79b86d59bd-9j8vt, Request Count: 439
+  Component: service-e
+    Pod: service-e-deployment-5b7f57b8c-wsztz, Request Count: 597
+    Pod: service-e-deployment-5b7f57b8c-h8gxc, Request Count: 527
+    Pod: service-e-deployment-5b7f57b8c-kzvq8, Request Count: 620
+    Pod: service-e-deployment-5b7f57b8c-24p2v, Request Count: 583
+  Component: service-b
+    Pod: service-b-deployment-5b99db849d-cxjjn, Request Count: 595
+    Pod: service-b-deployment-5b99db849d-wqbsc, Request Count: 568
+    Pod: service-b-deployment-5b99db849d-slv9l, Request Count: 527
+    Pod: service-b-deployment-5b99db849d-42tnp, Request Count: 554
+  Component: service-c
+    Pod: service-c-deployment-57cd84fbfc-qjmn4, Request Count: 1570
+    Pod: service-c-deployment-57cd84fbfc-ftmnj, Request Count: 754
+  Component: service-a
+    Pod: service-a-deployment-696cb64c9-6q8jb, Request Count: 0
+    Pod: service-a-deployment-696cb64c9-rhlhw, Request Count: 0
+    Pod: service-a-deployment-696cb64c9-x46mt, Request Count: 0
+
+Request Duration Per Pod:
+  Component: service-b
+    Pod: service-b-deployment-5b99db849d-cxjjn, Request Duration: 12 ms
+    Pod: service-b-deployment-5b99db849d-wqbsc, Request Duration: 10 ms
+    Pod: service-b-deployment-5b99db849d-slv9l, Request Duration: 12 ms
+    Pod: service-b-deployment-5b99db849d-42tnp, Request Duration: 12 ms
+  Component: service-c
+    Pod: service-c-deployment-57cd84fbfc-qjmn4, Request Duration: 9 ms
+    Pod: service-c-deployment-57cd84fbfc-ftmnj, Request Duration: 6 ms
+  Component: service-e
+    Pod: service-e-deployment-5b7f57b8c-wsztz, Request Duration: 1 ms
+    Pod: service-e-deployment-5b7f57b8c-h8gxc, Request Duration: 0 ms
+    Pod: service-e-deployment-5b7f57b8c-kzvq8, Request Duration: 0 ms
+    Pod: service-e-deployment-5b7f57b8c-24p2v, Request Duration: 0 ms
+  Component: service-d
+    Pod: service-d-deployment-79b86d59bd-jgj5h, Request Duration: 3 ms
+    Pod: service-d-deployment-79b86d59bd-fk7tl, Request Duration: 4 ms
+    Pod: service-d-deployment-79b86d59bd-kxhjk, Request Duration: 3 ms
+    Pod: service-d-deployment-79b86d59bd-9h2qn, Request Duration: 5 ms
+    Pod: service-d-deployment-79b86d59bd-9j8vt, Request Duration: 3 ms
+
+CPU Utilization Per Pod:
+  Component: service-c
+    Pod: service-c-deployment-57cd84fbfc-qjmn4, CPU Utilization: 29%
+    Pod: service-c-deployment-57cd84fbfc-ftmnj, CPU Utilization: 6%
+  Component: service-a
+    Pod: service-a-deployment-696cb64c9-6q8jb, CPU Utilization: 7%
+    Pod: service-a-deployment-696cb64c9-rhlhw, CPU Utilization: 12%
+    Pod: service-a-deployment-696cb64c9-x46mt, CPU Utilization: 5%
+  Component: service-d
+    Pod: service-d-deployment-79b86d59bd-jgj5h, CPU Utilization: 5%
+    Pod: service-d-deployment-79b86d59bd-fk7tl, CPU Utilization: 9%
+    Pod: service-d-deployment-79b86d59bd-kxhjk, CPU Utilization: 5%
+    Pod: service-d-deployment-79b86d59bd-9h2qn, CPU Utilization: 11%
+    Pod: service-d-deployment-79b86d59bd-9j8vt, CPU Utilization: 4%
+  Component: service-e
+    Pod: service-e-deployment-5b7f57b8c-wsztz, CPU Utilization: 4%
+    Pod: service-e-deployment-5b7f57b8c-h8gxc, CPU Utilization: 2%
+    Pod: service-e-deployment-5b7f57b8c-kzvq8, CPU Utilization: 2%
+    Pod: service-e-deployment-5b7f57b8c-24p2v, CPU Utilization: 2%
+  Component: service-b
+    Pod: service-b-deployment-5b99db849d-cxjjn, CPU Utilization: 13%
+    Pod: service-b-deployment-5b99db849d-wqbsc, CPU Utilization: 5%
+    Pod: service-b-deployment-5b99db849d-slv9l, CPU Utilization: 5%
+    Pod: service-b-deployment-5b99db849d-42tnp, CPU Utilization: 6%
+
+Node CPU Hz:
+  NodeName: 192.168.0.3:9100, Hertz: 53
+  NodeName: 192.168.0.37:9100, Hertz: 47
+  NodeName: 192.168.0.32:9100, Hertz: 47
+  NodeName: 192.168.0.10:9100, Hertz: 30
+  NodeName: 192.168.0.5:9100, Hertz: 30
+
+Traffic Allocation Result:
+  Source Component: service-d
+    Destination Component: service-e
+      Source Pod: service-d-deployment-79b86d59bd-jgj5h
+        -> Destination Pod: service-e-deployment-5b7f57b8c-wsztz, Proportion: 25
+        -> Destination Pod: service-e-deployment-5b7f57b8c-h8gxc, Proportion: 50
+        -> Destination Pod: service-e-deployment-5b7f57b8c-kzvq8, Proportion: 75
+        -> Destination Pod: service-e-deployment-5b7f57b8c-24p2v, Proportion: 100
+      Source Pod: service-d-deployment-79b86d59bd-fk7tl
+        -> Destination Pod: service-e-deployment-5b7f57b8c-wsztz, Proportion: 25
+        -> Destination Pod: service-e-deployment-5b7f57b8c-h8gxc, Proportion: 50
+        -> Destination Pod: service-e-deployment-5b7f57b8c-kzvq8, Proportion: 75
+        -> Destination Pod: service-e-deployment-5b7f57b8c-24p2v, Proportion: 100
+      Source Pod: service-d-deployment-79b86d59bd-kxhjk
+        -> Destination Pod: service-e-deployment-5b7f57b8c-wsztz, Proportion: 25
+        -> Destination Pod: service-e-deployment-5b7f57b8c-h8gxc, Proportion: 50
+        -> Destination Pod: service-e-deployment-5b7f57b8c-kzvq8, Proportion: 75
+        -> Destination Pod: service-e-deployment-5b7f57b8c-24p2v, Proportion: 100
+      Source Pod: service-d-deployment-79b86d59bd-9h2qn
+        -> Destination Pod: service-e-deployment-5b7f57b8c-wsztz, Proportion: 25
+        -> Destination Pod: service-e-deployment-5b7f57b8c-h8gxc, Proportion: 50
+        -> Destination Pod: service-e-deployment-5b7f57b8c-kzvq8, Proportion: 75
+        -> Destination Pod: service-e-deployment-5b7f57b8c-24p2v, Proportion: 100
+      Source Pod: service-d-deployment-79b86d59bd-9j8vt
+        -> Destination Pod: service-e-deployment-5b7f57b8c-wsztz, Proportion: 25
+        -> Destination Pod: service-e-deployment-5b7f57b8c-h8gxc, Proportion: 50
+        -> Destination Pod: service-e-deployment-5b7f57b8c-kzvq8, Proportion: 75
+        -> Destination Pod: service-e-deployment-5b7f57b8c-24p2v, Proportion: 100
+  Source Component: service-c
+    Destination Component: service-d
+      Source Pod: service-c-deployment-57cd84fbfc-qjmn4
+        -> Destination Pod: service-d-deployment-79b86d59bd-jgj5h, Proportion: 20
+        -> Destination Pod: service-d-deployment-79b86d59bd-fk7tl, Proportion: 40
+        -> Destination Pod: service-d-deployment-79b86d59bd-kxhjk, Proportion: 60
+        -> Destination Pod: service-d-deployment-79b86d59bd-9h2qn, Proportion: 80
+        -> Destination Pod: service-d-deployment-79b86d59bd-9j8vt, Proportion: 100
+      Source Pod: service-c-deployment-57cd84fbfc-ftmnj
+        -> Destination Pod: service-d-deployment-79b86d59bd-jgj5h, Proportion: 20
+        -> Destination Pod: service-d-deployment-79b86d59bd-fk7tl, Proportion: 40
+        -> Destination Pod: service-d-deployment-79b86d59bd-kxhjk, Proportion: 60
+        -> Destination Pod: service-d-deployment-79b86d59bd-9h2qn, Proportion: 80
+        -> Destination Pod: service-d-deployment-79b86d59bd-9j8vt, Proportion: 100
+  Source Component: service-a
+    Destination Component: service-b
+      Source Pod: service-a-deployment-696cb64c9-6q8jb
+        -> Destination Pod: service-b-deployment-5b99db849d-cxjjn, Proportion: 25
+        -> Destination Pod: service-b-deployment-5b99db849d-wqbsc, Proportion: 50
+        -> Destination Pod: service-b-deployment-5b99db849d-slv9l, Proportion: 75
+        -> Destination Pod: service-b-deployment-5b99db849d-42tnp, Proportion: 100
+      Source Pod: service-a-deployment-696cb64c9-rhlhw
+        -> Destination Pod: service-b-deployment-5b99db849d-cxjjn, Proportion: 25
+        -> Destination Pod: service-b-deployment-5b99db849d-wqbsc, Proportion: 50
+        -> Destination Pod: service-b-deployment-5b99db849d-slv9l, Proportion: 75
+        -> Destination Pod: service-b-deployment-5b99db849d-42tnp, Proportion: 100
+      Source Pod: service-a-deployment-696cb64c9-x46mt
+        -> Destination Pod: service-b-deployment-5b99db849d-cxjjn, Proportion: 25
+        -> Destination Pod: service-b-deployment-5b99db849d-wqbsc, Proportion: 50
+        -> Destination Pod: service-b-deployment-5b99db849d-slv9l, Proportion: 75
+        -> Destination Pod: service-b-deployment-5b99db849d-42tnp, Proportion: 100
+  Source Component: service-b
+    Destination Component: service-c
+      Source Pod: service-b-deployment-5b99db849d-cxjjn
+        -> Destination Pod: service-c-deployment-57cd84fbfc-qjmn4, Proportion: 50
+        -> Destination Pod: service-c-deployment-57cd84fbfc-ftmnj, Proportion: 100
+      Source Pod: service-b-deployment-5b99db849d-wqbsc
+        -> Destination Pod: service-c-deployment-57cd84fbfc-qjmn4, Proportion: 50
+        -> Destination Pod: service-c-deployment-57cd84fbfc-ftmnj, Proportion: 100
+      Source Pod: service-b-deployment-5b99db849d-slv9l
+        -> Destination Pod: service-c-deployment-57cd84fbfc-qjmn4, Proportion: 50
+        -> Destination Pod: service-c-deployment-57cd84fbfc-ftmnj, Proportion: 100
+      Source Pod: service-b-deployment-5b99db849d-42tnp
+        -> Destination Pod: service-c-deployment-57cd84fbfc-qjmn4, Proportion: 50
+        -> Destination Pod: service-c-deployment-57cd84fbfc-ftmnj, Proportion: 100

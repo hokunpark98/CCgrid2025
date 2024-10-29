@@ -1,0 +1,182 @@
+Log start time: 2024-09-03 16:25:08
+---------------------------------------------
+
+
+Component Graph:
+  Components:
+    - service-a
+  Links:
+    - [service-a -> service-b]
+
+    - service-b
+  Links:
+    - [service-b -> service-c]
+
+    - service-c
+  Links:
+    - [service-c -> service-d]
+
+    - service-d
+  Links:
+    - [service-d -> service-e]
+
+Component to Pod Map:
+  Comonent:service-a
+    [service-a-deployment-696cb64c9-6q8jb, 172.24.182.28, worker3, 192.168.0.32]
+    [service-a-deployment-696cb64c9-rhlhw, 172.20.235.161, worker1, 192.168.0.37]
+    [service-a-deployment-696cb64c9-hvg97, 172.22.33.27, worker4, 192.168.0.5]
+  Comonent:service-d
+    [service-d-deployment-79b86d59bd-jgj5h, 172.20.235.162, worker1, 192.168.0.37]
+    [service-d-deployment-79b86d59bd-fk7tl, 172.31.233.208, worker2, 192.168.0.10]
+    [service-d-deployment-79b86d59bd-kxhjk, 172.24.182.30, worker3, 192.168.0.32]
+    [service-d-deployment-79b86d59bd-9h2qn, 172.22.33.26, worker4, 192.168.0.5]
+    [service-d-deployment-79b86d59bd-6wn9w, 172.24.182.32, worker3, 192.168.0.32]
+  Comonent:service-e
+    [service-e-deployment-5b7f57b8c-wsztz, 172.31.233.209, worker2, 192.168.0.10]
+    [service-e-deployment-5b7f57b8c-h8gxc, 172.20.235.163, worker1, 192.168.0.37]
+    [service-e-deployment-5b7f57b8c-24p2v, 172.24.182.31, worker3, 192.168.0.32]
+    [service-e-deployment-5b7f57b8c-ltbr6, 172.22.33.28, worker4, 192.168.0.5]
+  Comonent:service-b
+    [service-b-deployment-5b99db849d-cxjjn, 172.22.33.25, worker4, 192.168.0.5]
+    [service-b-deployment-5b99db849d-slv9l, 172.24.182.29, worker3, 192.168.0.32]
+    [service-b-deployment-5b99db849d-42tnp, 172.20.235.160, worker1, 192.168.0.37]
+    [service-b-deployment-5b99db849d-wdnzc, 172.31.233.210, worker2, 192.168.0.10]
+  Comonent:service-c
+    [service-c-deployment-57cd84fbfc-qjmn4, 172.31.233.207, worker2, 192.168.0.10]
+    [service-c-deployment-57cd84fbfc-srwpd, 172.20.235.165, worker1, 192.168.0.37]
+
+Request Count Per Pod:
+  Component: service-a
+    Pod: service-a-deployment-696cb64c9-6q8jb, Request Count: 0
+    Pod: service-a-deployment-696cb64c9-rhlhw, Request Count: 0
+    Pod: service-a-deployment-696cb64c9-hvg97, Request Count: 0
+  Component: service-d
+    Pod: service-d-deployment-79b86d59bd-6wn9w, Request Count: 0
+    Pod: service-d-deployment-79b86d59bd-jgj5h, Request Count: 0
+    Pod: service-d-deployment-79b86d59bd-fk7tl, Request Count: 0
+    Pod: service-d-deployment-79b86d59bd-kxhjk, Request Count: 0
+    Pod: service-d-deployment-79b86d59bd-9h2qn, Request Count: 0
+  Component: service-e
+    Pod: service-e-deployment-5b7f57b8c-h8gxc, Request Count: 0
+    Pod: service-e-deployment-5b7f57b8c-24p2v, Request Count: 0
+    Pod: service-e-deployment-5b7f57b8c-ltbr6, Request Count: 0
+    Pod: service-e-deployment-5b7f57b8c-wsztz, Request Count: 0
+  Component: service-b
+    Pod: service-b-deployment-5b99db849d-cxjjn, Request Count: 0
+    Pod: service-b-deployment-5b99db849d-slv9l, Request Count: 0
+    Pod: service-b-deployment-5b99db849d-42tnp, Request Count: 0
+    Pod: service-b-deployment-5b99db849d-wdnzc, Request Count: 0
+  Component: service-c
+    Pod: service-c-deployment-57cd84fbfc-qjmn4, Request Count: 0
+    Pod: service-c-deployment-57cd84fbfc-srwpd, Request Count: 0
+
+Request Duration Per Pod:
+  Component: service-d
+  Component: service-e
+  Component: service-b
+  Component: service-c
+
+CPU Utilization Per Pod:
+  Component: service-d
+    Pod: service-d-deployment-79b86d59bd-jgj5h, CPU Utilization: 1%
+    Pod: service-d-deployment-79b86d59bd-fk7tl, CPU Utilization: 1%
+    Pod: service-d-deployment-79b86d59bd-kxhjk, CPU Utilization: 1%
+    Pod: service-d-deployment-79b86d59bd-9h2qn, CPU Utilization: 1%
+    Pod: service-d-deployment-79b86d59bd-6wn9w, CPU Utilization: 1%
+  Component: service-e
+    Pod: service-e-deployment-5b7f57b8c-wsztz, CPU Utilization: 1%
+    Pod: service-e-deployment-5b7f57b8c-h8gxc, CPU Utilization: 1%
+    Pod: service-e-deployment-5b7f57b8c-24p2v, CPU Utilization: 1%
+    Pod: service-e-deployment-5b7f57b8c-ltbr6, CPU Utilization: 1%
+  Component: service-b
+    Pod: service-b-deployment-5b99db849d-cxjjn, CPU Utilization: 1%
+    Pod: service-b-deployment-5b99db849d-slv9l, CPU Utilization: 1%
+    Pod: service-b-deployment-5b99db849d-42tnp, CPU Utilization: 1%
+    Pod: service-b-deployment-5b99db849d-wdnzc, CPU Utilization: 1%
+  Component: service-c
+    Pod: service-c-deployment-57cd84fbfc-qjmn4, CPU Utilization: 1%
+    Pod: service-c-deployment-57cd84fbfc-srwpd, CPU Utilization: 1%
+  Component: service-a
+    Pod: service-a-deployment-696cb64c9-6q8jb, CPU Utilization: 1%
+    Pod: service-a-deployment-696cb64c9-rhlhw, CPU Utilization: 1%
+    Pod: service-a-deployment-696cb64c9-hvg97, CPU Utilization: 1%
+
+Node CPU Hz:
+  NodeName: 192.168.0.10:9100, Hertz: 30
+  NodeName: 192.168.0.5:9100, Hertz: 30
+  NodeName: 192.168.0.37:9100, Hertz: 47
+  NodeName: 192.168.0.32:9100, Hertz: 47
+
+Traffic Allocation Result:
+  Source Component: service-a
+    Destination Component: service-b
+      Source Pod: service-a-deployment-696cb64c9-6q8jb
+        -> Destination Pod: service-b-deployment-5b99db849d-cxjjn, Proportion: 25
+        -> Destination Pod: service-b-deployment-5b99db849d-slv9l, Proportion: 50
+        -> Destination Pod: service-b-deployment-5b99db849d-42tnp, Proportion: 75
+        -> Destination Pod: service-b-deployment-5b99db849d-wdnzc, Proportion: 100
+      Source Pod: service-a-deployment-696cb64c9-rhlhw
+        -> Destination Pod: service-b-deployment-5b99db849d-cxjjn, Proportion: 25
+        -> Destination Pod: service-b-deployment-5b99db849d-slv9l, Proportion: 50
+        -> Destination Pod: service-b-deployment-5b99db849d-42tnp, Proportion: 75
+        -> Destination Pod: service-b-deployment-5b99db849d-wdnzc, Proportion: 100
+      Source Pod: service-a-deployment-696cb64c9-hvg97
+        -> Destination Pod: service-b-deployment-5b99db849d-cxjjn, Proportion: 25
+        -> Destination Pod: service-b-deployment-5b99db849d-slv9l, Proportion: 50
+        -> Destination Pod: service-b-deployment-5b99db849d-42tnp, Proportion: 75
+        -> Destination Pod: service-b-deployment-5b99db849d-wdnzc, Proportion: 100
+  Source Component: service-b
+    Destination Component: service-c
+      Source Pod: service-b-deployment-5b99db849d-cxjjn
+        -> Destination Pod: service-c-deployment-57cd84fbfc-qjmn4, Proportion: 50
+        -> Destination Pod: service-c-deployment-57cd84fbfc-srwpd, Proportion: 100
+      Source Pod: service-b-deployment-5b99db849d-slv9l
+        -> Destination Pod: service-c-deployment-57cd84fbfc-qjmn4, Proportion: 50
+        -> Destination Pod: service-c-deployment-57cd84fbfc-srwpd, Proportion: 100
+      Source Pod: service-b-deployment-5b99db849d-42tnp
+        -> Destination Pod: service-c-deployment-57cd84fbfc-qjmn4, Proportion: 50
+        -> Destination Pod: service-c-deployment-57cd84fbfc-srwpd, Proportion: 100
+      Source Pod: service-b-deployment-5b99db849d-wdnzc
+        -> Destination Pod: service-c-deployment-57cd84fbfc-qjmn4, Proportion: 50
+        -> Destination Pod: service-c-deployment-57cd84fbfc-srwpd, Proportion: 100
+  Source Component: service-c
+    Destination Component: service-d
+      Source Pod: service-c-deployment-57cd84fbfc-qjmn4
+        -> Destination Pod: service-d-deployment-79b86d59bd-jgj5h, Proportion: 20
+        -> Destination Pod: service-d-deployment-79b86d59bd-fk7tl, Proportion: 40
+        -> Destination Pod: service-d-deployment-79b86d59bd-kxhjk, Proportion: 60
+        -> Destination Pod: service-d-deployment-79b86d59bd-9h2qn, Proportion: 80
+        -> Destination Pod: service-d-deployment-79b86d59bd-6wn9w, Proportion: 100
+      Source Pod: service-c-deployment-57cd84fbfc-srwpd
+        -> Destination Pod: service-d-deployment-79b86d59bd-jgj5h, Proportion: 20
+        -> Destination Pod: service-d-deployment-79b86d59bd-fk7tl, Proportion: 40
+        -> Destination Pod: service-d-deployment-79b86d59bd-kxhjk, Proportion: 60
+        -> Destination Pod: service-d-deployment-79b86d59bd-9h2qn, Proportion: 80
+        -> Destination Pod: service-d-deployment-79b86d59bd-6wn9w, Proportion: 100
+  Source Component: service-d
+    Destination Component: service-e
+      Source Pod: service-d-deployment-79b86d59bd-jgj5h
+        -> Destination Pod: service-e-deployment-5b7f57b8c-wsztz, Proportion: 25
+        -> Destination Pod: service-e-deployment-5b7f57b8c-h8gxc, Proportion: 50
+        -> Destination Pod: service-e-deployment-5b7f57b8c-24p2v, Proportion: 75
+        -> Destination Pod: service-e-deployment-5b7f57b8c-ltbr6, Proportion: 100
+      Source Pod: service-d-deployment-79b86d59bd-fk7tl
+        -> Destination Pod: service-e-deployment-5b7f57b8c-wsztz, Proportion: 25
+        -> Destination Pod: service-e-deployment-5b7f57b8c-h8gxc, Proportion: 50
+        -> Destination Pod: service-e-deployment-5b7f57b8c-24p2v, Proportion: 75
+        -> Destination Pod: service-e-deployment-5b7f57b8c-ltbr6, Proportion: 100
+      Source Pod: service-d-deployment-79b86d59bd-kxhjk
+        -> Destination Pod: service-e-deployment-5b7f57b8c-wsztz, Proportion: 25
+        -> Destination Pod: service-e-deployment-5b7f57b8c-h8gxc, Proportion: 50
+        -> Destination Pod: service-e-deployment-5b7f57b8c-24p2v, Proportion: 75
+        -> Destination Pod: service-e-deployment-5b7f57b8c-ltbr6, Proportion: 100
+      Source Pod: service-d-deployment-79b86d59bd-9h2qn
+        -> Destination Pod: service-e-deployment-5b7f57b8c-wsztz, Proportion: 25
+        -> Destination Pod: service-e-deployment-5b7f57b8c-h8gxc, Proportion: 50
+        -> Destination Pod: service-e-deployment-5b7f57b8c-24p2v, Proportion: 75
+        -> Destination Pod: service-e-deployment-5b7f57b8c-ltbr6, Proportion: 100
+      Source Pod: service-d-deployment-79b86d59bd-6wn9w
+        -> Destination Pod: service-e-deployment-5b7f57b8c-wsztz, Proportion: 25
+        -> Destination Pod: service-e-deployment-5b7f57b8c-h8gxc, Proportion: 50
+        -> Destination Pod: service-e-deployment-5b7f57b8c-24p2v, Proportion: 75
+        -> Destination Pod: service-e-deployment-5b7f57b8c-ltbr6, Proportion: 100

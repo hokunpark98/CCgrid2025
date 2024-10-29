@@ -1,0 +1,60 @@
+# Service 생성
+apiVersion: v1
+kind: Service
+metadata:
+  name: metric-collector
+  namespace: hk-sched
+spec:
+  selector:
+    app: metric-collector
+  ports:
+  - name: http
+    port: 21001
+    targetPort: 21001
+  type: ClusterIP
+
+---
+
+# ServiceAccount 생성
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: metric-collector-sa
+  namespace: hk-sched
+  labels:
+    app: metric-collector
+
+---
+
+# ClusterRole 생성 - 모든 네임스페이스의 서비스 및 파드 리소스에 접근 가능
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: metric-collector-role
+  labels:
+    app: metric-collector
+rules:
+  - apiGroups: [""]
+    resources: ["services", "pods"]
+    verbs: ["get", "list", "watch"]
+
+
+---
+
+# ClusterRoleBinding 생성 - ServiceAccount에 ClusterRole 권한 부여
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: metric-collector-binding
+  labels:
+    app: metric-collector
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: metric-collector-role
+subjects:
+  - kind: ServiceAccount
+    name: metric-collector-sa
+    namespace: hk-sched
+
+---

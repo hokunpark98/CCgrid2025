@@ -1,0 +1,21 @@
+
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: service-b-deployment-5b99db849d-qh768-11001
+  namespace: custom
+spec:
+  hosts:
+  - service-b-deployment-5b99db849d-qh768
+  addresses:
+  - 172.22.33.8
+  ports:
+  - number: 11001
+    name: http
+    protocol: HTTP
+  resolution: STATIC
+  location: MESH_INTERNAL
+  endpoints:
+  - address: 172.22.33.8
+    ports:
+      http: 11001

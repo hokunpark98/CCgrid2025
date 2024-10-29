@@ -1,0 +1,20 @@
+{
+    "trigono-worker2-58d5cdbc6f-w9tcr": {
+        "cpu_usage": 14.706819342844035
+    },
+    "trigono-worker3-7f55fcf764-jgrwz": {
+        "cpu_usage": 24.659915383249494
+    },
+    "trigono-worker1-5dbcbc69db-vplqp": {
+        "cpu_usage": 15.432919217800766
+    },
+    "trigono-worker1": {
+        "requests_received": 1.0981564913793105
+    },
+    "trigono-worker3": {
+        "requests_received": 1.1582687216748768
+    },
+    "trigono-worker2": {
+        "requests_received": 1.0441448505747126
+    }
+}

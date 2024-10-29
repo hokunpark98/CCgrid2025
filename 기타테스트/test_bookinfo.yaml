@@ -1,0 +1,46 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: {component}-filter
+  namespace: {namespace}
+spec:
+  workloadSelector:
+    labels:
+      app: {component}
+  configPatches:
+  - applyTo: HTTP_FILTER
+    match:
+      context: SIDECAR_OUTBOUND  # 필터를 적용할 컨텍스트 지정
+      listener:
+        filterChain:
+          filter:
+            name: envoy.filters.network.http_connection_manager
+    patch:
+      operation: INSERT_BEFORE
+      value:
+        name: envoy.filters.http.lua
+        typed_config:
+          "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
+          inline_code: |
+            -- 전역 변수를 사용해 파드 IP를 계속 확인하지 않도록 변수 선언
+            local pod_ip = nil
+
+            function envoy_on_request(request_handle)
+              -- 첫 요청에만 파드 IP가져와서 불필요한 반복 없앰
+              if not pod_ip then
+                local handle = io.popen("hostname -i")
+                pod_ip = handle:read("*a"):match("^%s*(.-)%s*$")
+                handle:close()
+              end
+
+              local source = request_handle:headers():get("x-forwarded-for")
+              local destination = request_handle:headers():get(":authority")   
+            
+              -- 실제 매칭 되는 부분
+              
+              if destination == "details:9080" then
+                destination = "172.31.71.209:9080"
+              end
+              
+              request_handle:headers():replace(":authority", destination)
+            end

@@ -1,0 +1,32 @@
+{
+    "trigono-worker2-58d5cdbc6f-wzb5p": {
+        "cpu_usage": 8.74124453772719
+    },
+    "trigono-worker3-7f55fcf764-pdkbb": {
+        "cpu_usage": 14.288311111111112
+    },
+    "trigono-worker4-7cb9c9db4c-2c6kf": {
+        "cpu_usage": 15.831443111595783
+    },
+    "trigono-worker1-2-5dbcbc69db-mn64r": {
+        "cpu_usage": 9.423680449898743
+    },
+    "trigono-worker1-1-5dbcbc69db-kplsg": {
+        "cpu_usage": 9.342860579133916
+    },
+    "trigono-worker2": {
+        "requests_received": 0.6580828160919541
+    },
+    "trigono-worker1-1": {
+        "requests_received": 0.6616408481116585
+    },
+    "trigono-worker1-2": {
+        "requests_received": 0.6581588838259442
+    },
+    "trigono-worker3": {
+        "requests_received": 0.6506441091954024
+    },
+    "trigono-worker4": {
+        "requests_received": 0.6397755888980113
+    }
+}
