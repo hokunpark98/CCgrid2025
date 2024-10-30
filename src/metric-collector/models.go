@@ -31,3 +31,9 @@ type NamespaceData struct {
 	Namespace  string          `json:"namespace"`
 	Components []ComponentData `json:"components"`
 }
+
+// 의존성 그래프를 표현하기 위한 구조체
+type DependencyData struct {
+	Source      string `json:"source"`
+	Destination string `json:"destination"`
+}

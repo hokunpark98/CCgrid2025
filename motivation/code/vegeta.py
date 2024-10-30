@@ -8,7 +8,7 @@ import requests
 import json
 import time
 
-PROMETHEUS_URL = 'http://10.103.223.73:8080/api/v1/query'
+PROMETHEUS_URL = 'http://10.104.130.33:8080/api/v1/query'
 
 if '-h' in sys.argv or '--help' in sys.argv:
     print('usage:', file=sys.stderr)

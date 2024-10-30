@@ -50,3 +50,24 @@ func (h *Handler) MetricsHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
 	}
 }
+
+func (h *Handler) DagHandler(w http.ResponseWriter, r *http.Request) {
+	// 쿼리 파라미터에서 value와 namespace를 가져옵니다.
+	value := r.URL.Query().Get("value")
+	namespace := r.URL.Query().Get("namespace")
+	if value == "" || namespace == "" {
+		http.Error(w, "Missing 'value' or 'namespace' parameter", http.StatusBadRequest)
+		return
+	}
+
+	// 서비스 의존성 수집
+	dependencies, err := CollectServiceDependencies(h.PromClient, namespace, value+"s")
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Error collecting dependencies: %v", err), http.StatusInternalServerError)
+		return
+	}
+
+	// JSON 응답 반환
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(dependencies)
+}

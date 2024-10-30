@@ -170,3 +170,44 @@ func CollectRequestCountForAllPods(promClient *PrometheusClient, namespace strin
 
 	return requestCountMap, nil
 }
+
+// CollectServiceDependencies 함수
+// CollectServiceDependencies collects service dependencies without request count
+func CollectServiceDependencies(promClient *PrometheusClient, namespace string, duration string) ([]DependencyData, error) {
+	query := fmt.Sprintf(`sum(increase(istio_requests_total{kubernetes_namespace="%s"}[%s])) by (source_canonical_service, destination_canonical_service)`, namespace, duration)
+
+	result, err := promClient.Query(query)
+	if err != nil {
+		return nil, err
+	}
+
+	dependencyMap := make(map[string]*DependencyData)
+
+	for _, sample := range result {
+		source := string(sample.Metric["source_canonical_service"])
+		destination := string(sample.Metric["destination_canonical_service"])
+
+		// 불필요한 서비스 필터링 (예: unknown)
+		if source == "unknown" || destination == "unknown" {
+			continue
+		}
+
+		key := source + "->" + destination
+
+		// 중복 방지를 위해 키를 맵에 추가
+		if _, exists := dependencyMap[key]; !exists {
+			dependencyMap[key] = &DependencyData{
+				Source:      source,
+				Destination: destination,
+			}
+		}
+	}
+
+	// 맵을 슬라이스로 변환하여 반환
+	var dependencies []DependencyData
+	for _, dep := range dependencyMap {
+		dependencies = append(dependencies, *dep)
+	}
+
+	return dependencies, nil
+}

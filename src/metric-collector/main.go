@@ -13,8 +13,8 @@ import (
 
 func main() {
 	// Prometheus client initialization
-	promClient, err := NewPrometheusClient("http://prometheus-service.monitoring.svc.cluster.local:8080")
-	//promClient, err := NewPrometheusClient("http://10.104.130.33:8080")
+	//promClient, err := NewPrometheusClient("http://prometheus-service.monitoring.svc.cluster.local:8080")
+	promClient, err := NewPrometheusClient("http://10.104.130.33:8080")
 	if err != nil {
 		log.Fatalf("Failed to create Prometheus client: %v", err)
 	}
@@ -52,8 +52,11 @@ func main() {
 
 	// HTTP server setup
 	http.HandleFunc("/metrics", h.MetricsHandler)
+	http.HandleFunc("/dag", h.DagHandler)
+
 	log.Println("Server is running on port 21001")
 	if err := http.ListenAndServe(":21001", nil); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
+
 }
