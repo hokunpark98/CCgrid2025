@@ -1,0 +1,21 @@
+
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: service-e-deployment-5b7f57b8c-sgg8m-11004
+  namespace: custom
+spec:
+  hosts:
+  - service-e-deployment-5b7f57b8c-sgg8m
+  addresses:
+  - 172.31.233.213
+  ports:
+  - number: 11004
+    name: http
+    protocol: HTTP
+  resolution: STATIC
+  location: MESH_INTERNAL
+  endpoints:
+  - address: 172.31.233.213
+    ports:
+      http: 11004

@@ -1,0 +1,73 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: service-c-filter
+  namespace: custom
+spec:
+  workloadSelector:
+    labels:
+      app: service-c
+  configPatches:
+    - applyTo: HTTP_FILTER
+      match:
+        context: SIDECAR_OUTBOUND
+        listener:
+          filterChain:
+            filter:
+              name: envoy.filters.network.http_connection_manager
+      patch:
+        operation: INSERT_BEFORE
+        value:
+          name: envoy.filters.http.lua
+          typed_config:
+            "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
+            inline_code: |
+              local pod_ip = nil
+
+              function envoy_on_request(request_handle)
+                -- Pod IP를 한 번만 가져오기
+                if not pod_ip then
+                  local handle = io.popen("hostname -i")
+                  pod_ip = handle:read("*a"):match("^%s*(.-)%s*$")
+                  handle:close()
+                end
+
+                -- 요청에서 목적지 호스트(:authority) 헤더 추출
+                local destination = request_handle:headers():get(":authority")
+                local domain = destination:match("^([^:]+)")
+
+                if domain == "service-d" then
+                  local new_destination = nil
+                  local rand = math.random(0, 100)
+                  if pod_ip == "172.20.235.150" then
+                    if rand <= 20 then
+                          new_destination = "service-d-deployment-79b86d59bd-c2rnv"
+                    elseif rand <= 40 then
+                          new_destination = "service-d-deployment-79b86d59bd-vn7qw"
+                    elseif rand <= 60 then
+                          new_destination = "service-d-deployment-79b86d59bd-9xqwj"
+                    elseif rand <= 80 then
+                          new_destination = "service-d-deployment-79b86d59bd-7f7tn"
+                    elseif rand <= 100 then
+                          new_destination = "service-d-deployment-79b86d59bd-xnw5k"
+                    end
+                  elseif pod_ip == "172.31.233.214" then
+                    if rand <= 20 then
+                          new_destination = "service-d-deployment-79b86d59bd-c2rnv"
+                    elseif rand <= 40 then
+                          new_destination = "service-d-deployment-79b86d59bd-vn7qw"
+                    elseif rand <= 60 then
+                          new_destination = "service-d-deployment-79b86d59bd-9xqwj"
+                    elseif rand <= 80 then
+                          new_destination = "service-d-deployment-79b86d59bd-7f7tn"
+                    elseif rand <= 100 then
+                          new_destination = "service-d-deployment-79b86d59bd-xnw5k"
+                    end
+                  end
+                  if new_destination then
+                    local new_destination = new_destination .. destination:match("(:.*)$")
+                    request_handle:headers():replace(":authority", new_destination)
+                    request_handle:headers():replace("Host", new_destination)
+                  end
+                end
+              end
