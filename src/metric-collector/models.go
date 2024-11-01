@@ -6,34 +6,35 @@ var workerFrequencies = map[string]float32{
 	"worker2": 4.5,
 	"worker3": 2.5,
 	"worker4": 2.5,
+	"worker5": 3,
 }
 
-// PodData represents the data for a pod
-type PodData struct {
-	PodName        string  `json:"pod"`
-	PodIP          string  `json:"podIP"`
-	Port           int32   `json:"podPort"`    // 수신 중인 포트
-	CpuUtilization float64 `json:"cpuUtil"`    // Percent
-	RequestCount   int     `json:"requests"`   // Received requests in the specified duration
-	WorkerNode     string  `json:"worker"`     // Worker node name
-	Frequency      float32 `json:"frequency"`  // Worker node frequency
-	CpuRequest     int64   `json:"cpuRequest"` // 추가: CPU request in millicores
+// ReplicaData represents the data for a Replica
+type ReplicaData struct {
+	ReplicaName string  `json:"Replica"`
+	IP          string  `json:"IP"`
+	Port        int32   `json:"Port"`       // 수신 중인 포트
+	CpuUtil     float64 `json:"CpuUtil"`    // Percent
+	Requests    int     `json:"Requests"`   // Received requests in the specified duration
+	Worker      string  `json:"Worker"`     // Worker node name
+	Frequency   float32 `json:"Frequency"`  // Worker node frequency
+	CpuRequest  int64   `json:"CpuRequest"` // 추가: CPU request in millicores
 }
 
 // ComponentData represents data for a component
 type ComponentData struct {
-	ComponentName string    `json:"component"`
-	Pods          []PodData `json:"pods"`
+	ComponentName string        `json:"Component"`
+	Replicas      []ReplicaData `json:"Replicas"`
 }
 
 // NamespaceData represents data for a namespace
 type NamespaceData struct {
-	Namespace  string          `json:"namespace"`
-	Components []ComponentData `json:"components"`
+	Namespace  string          `json:"Namespace"`
+	Components []ComponentData `json:"Components"`
 }
 
 // 의존성 그래프를 표현하기 위한 구조체
 type DependencyData struct {
-	Source      string `json:"source"`
-	Destination string `json:"destination"`
+	Source      string `json:"Source"`
+	Destination string `json:"Destination"`
 }

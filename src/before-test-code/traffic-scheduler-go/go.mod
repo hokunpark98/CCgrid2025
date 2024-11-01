@@ -1,0 +1,5 @@
+module traffic-scheduler
+
+go 1.22.6
+
+require gonum.org/v1/gonum v0.15.1

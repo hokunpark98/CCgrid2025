@@ -23,13 +23,13 @@ now = datetime.now()
 print("현재 시간: ", now)
 
 # Set the result folder path
-result_folder = '/home/dnc/master/CCgrid2024/motivation/results/LEAST_CONN/50/3-5'
+result_folder = '/home/dnc/hokun/CCgrid2025/motivation/results'
 
 # Create the folder if it doesn't exist
 os.makedirs(result_folder, exist_ok=True)
 
 # Set duration (in minutes) and rate (requests per minute)
-RATE_PER_MINUTES = [100, 200, 300, 400, 500]    
+RATE_PER_MINUTES = [500]    
 DURATION = 300
 NAMESPACE = "pair"
 
@@ -52,8 +52,8 @@ for rate_per_minute in RATE_PER_MINUTES:
 
     # Construct the Vegeta command
     cmd = (
-        f'vegeta2 attack -timeout 0s -duration {DURATION}s -rate {rate_per_minute}/1m | '
-        f'vegeta2 report -type=json >> {vegeta_filename}'
+        f'vegeta attack -timeout 0s -duration {DURATION}s -rate {rate_per_minute}/1m | '
+        f'vegeta report -type=json >> {vegeta_filename}'
     )
 
     # Execute the Vegeta command

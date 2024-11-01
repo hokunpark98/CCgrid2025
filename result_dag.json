@@ -1,0 +1,10 @@
+[
+    {
+        "source": "load-generator",
+        "destination": "frontend-pair"
+    },
+    {
+        "source": "frontend-pair",
+        "destination": "trigono"
+    }
+]

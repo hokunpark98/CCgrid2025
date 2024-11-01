@@ -13,8 +13,8 @@ import (
 
 func main() {
 	// Prometheus client initialization
-	//promClient, err := NewPrometheusClient("http://prometheus-service.monitoring.svc.cluster.local:8080")
-	promClient, err := NewPrometheusClient("http://10.104.130.33:8080")
+	promClient, err := NewPrometheusClient("http://prometheus-service.monitoring.svc.cluster.local:8080")
+	//promClient, err := NewPrometheusClient("http://10.107.204.182:8080")
 	if err != nil {
 		log.Fatalf("Failed to create Prometheus client: %v", err)
 	}

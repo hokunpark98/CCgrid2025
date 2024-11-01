@@ -1,4 +1,3 @@
-
 # Deployment 생성 - metric-collector 컨테이너 배포
 apiVersion: apps/v1
 kind: Deployment
@@ -17,11 +16,11 @@ spec:
       labels:
         app: metric-collector
     spec:
-      serviceAccountName: metric-collector-sa  # ServiceAccount 설정
+      serviceAccountName: metric-collector-sa # ServiceAccount 설정
       tolerations:
-      - key: "node-role.kubernetes.io/control-plane"
-        operator: "Exists"
-        effect: "NoSchedule"
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"
       containers:
         - name: metric-collector
           image: hokunpark/metric-collector:v1

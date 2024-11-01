@@ -13,16 +13,16 @@ import (
 
 // CollectData collects CPU utilization, request counts, and worker node information.
 func CollectData(promClient *PrometheusClient, k8sClient *kubernetes.Clientset, namespace string, duration string) (NamespaceData, error) {
-	componentPodMap, err := MapServiceToPodInfo(k8sClient, namespace)
+	componentReplicaMap, err := MapServiceToPodInfo(k8sClient, namespace)
 	if err != nil {
 		return NamespaceData{}, err
 	}
 
 	// 파드 이름을 키로 하고 CPU 요청량을 값으로 하는 맵 생성
 	cpuRequestMap := make(map[string]int64)
-	for _, pods := range componentPodMap {
-		for _, pod := range pods {
-			cpuRequestMap[pod.PodName] = pod.CpuRequest
+	for _, replicas := range componentReplicaMap {
+		for _, replica := range replicas {
+			cpuRequestMap[replica.ReplicaName] = replica.CpuRequest
 		}
 	}
 
@@ -38,28 +38,28 @@ func CollectData(promClient *PrometheusClient, k8sClient *kubernetes.Clientset, 
 	}
 
 	var components []ComponentData
-	for serviceName, pods := range componentPodMap {
-		var podDataList []PodData
-		for _, pod := range pods {
-			cpuUtil := cpuUtilizationMap[pod.PodName]
-			requestCount := requestCountMap[pod.PodName]
-			frequency := workerFrequencies[pod.WorkerNode]
+	for serviceName, replicas := range componentReplicaMap {
+		var replicaDataList []ReplicaData
+		for _, replica := range replicas {
+			cpuUtil := cpuUtilizationMap[replica.ReplicaName]
+			requestCount := requestCountMap[replica.ReplicaName]
+			frequency := workerFrequencies[replica.Worker]
 
-			podDataList = append(podDataList, PodData{
-				PodName:        pod.PodName,
-				PodIP:          pod.PodIP,
-				Port:           pod.Port,
-				CpuUtilization: math.Max(float64(cpuUtil), 0),
-				RequestCount:   int(math.Max(float64(requestCount), 0)),
-				WorkerNode:     pod.WorkerNode,
-				Frequency:      frequency,
-				CpuRequest:     pod.CpuRequest,
+			replicaDataList = append(replicaDataList, ReplicaData{
+				ReplicaName: replica.ReplicaName,
+				IP:          replica.IP,
+				Port:        replica.Port,
+				CpuUtil:     math.Max(float64(cpuUtil), 0),
+				Requests:    int(math.Max(float64(requestCount), 0)),
+				Worker:      replica.Worker,
+				Frequency:   frequency,
+				CpuRequest:  replica.CpuRequest,
 			})
 		}
 
 		components = append(components, ComponentData{
 			ComponentName: serviceName,
-			Pods:          podDataList,
+			Replicas:      replicaDataList,
 		})
 	}
 
@@ -70,8 +70,8 @@ func CollectData(promClient *PrometheusClient, k8sClient *kubernetes.Clientset, 
 }
 
 // MapServiceToPodInfo maps services to their pods in the given namespace.
-func MapServiceToPodInfo(k8sClient *kubernetes.Clientset, namespace string) (map[string][]PodData, error) {
-	servicePodMap := make(map[string][]PodData)
+func MapServiceToPodInfo(k8sClient *kubernetes.Clientset, namespace string) (map[string][]ReplicaData, error) {
+	serviceReplicaMap := make(map[string][]ReplicaData)
 
 	services, err := k8sClient.CoreV1().Services(namespace).List(context.TODO(), metav1.ListOptions{})
 	if err != nil {
@@ -81,7 +81,7 @@ func MapServiceToPodInfo(k8sClient *kubernetes.Clientset, namespace string) (map
 	for _, service := range services.Items {
 		labelSelector := service.Spec.Selector
 		if len(labelSelector) > 0 {
-			pods, err := k8sClient.CoreV1().Pods(namespace).List(context.TODO(), metav1.ListOptions{
+			replicas, err := k8sClient.CoreV1().Pods(namespace).List(context.TODO(), metav1.ListOptions{
 				LabelSelector: labels.Set(labelSelector).String(),
 			})
 			if err != nil {
@@ -95,10 +95,10 @@ func MapServiceToPodInfo(k8sClient *kubernetes.Clientset, namespace string) (map
 				port = service.Spec.Ports[0].Port
 			}
 
-			for _, pod := range pods.Items {
+			for _, replica := range replicas.Items {
 				cpuRequest := int64(0)
 				// 각 컨테이너의 요청된 CPU 리소스를 합산하여 PodData에 저장
-				for _, container := range pod.Spec.Containers {
+				for _, container := range replica.Spec.Containers {
 					if container.Resources.Requests != nil {
 						if cpuQuantity, ok := container.Resources.Requests["cpu"]; ok {
 							cpuRequest += cpuQuantity.MilliValue() // millicores로 변환
@@ -106,18 +106,18 @@ func MapServiceToPodInfo(k8sClient *kubernetes.Clientset, namespace string) (map
 					}
 				}
 
-				servicePodMap[service.Name] = append(servicePodMap[service.Name], PodData{
-					PodName:    pod.Name,
-					PodIP:      pod.Status.PodIP,
-					Port:       port,
-					WorkerNode: pod.Spec.NodeName,
-					CpuRequest: cpuRequest, // CPU 요청 값 추가
+				serviceReplicaMap[service.Name] = append(serviceReplicaMap[service.Name], ReplicaData{
+					ReplicaName: replica.Name,
+					IP:          replica.Status.PodIP,
+					Port:        port,
+					Worker:      replica.Spec.NodeName,
+					CpuRequest:  cpuRequest, // CPU 요청 값 추가
 				})
 			}
 		}
 	}
 
-	return servicePodMap, nil
+	return serviceReplicaMap, nil
 }
 
 // CollectCpuUtilizationForAllPods collects CPU utilization for all pods in the namespace.
