@@ -1,110 +1,68 @@
 {
-    "Namespace": "pair",
-    "Components": [
-        {
-            "Component": "frontend-pair",
-            "Replicas": [
-                {
-                    "Replica": "frontend-pair-worker1-9656c64c6-qw76l",
-                    "IP": "172.20.235.145",
-                    "Port": 12001,
-                    "CpuUtil": 0.1802,
-                    "Requests": 0,
-                    "Worker": "worker1",
-                    "Frequency": 4.5,
-                    "CpuRequest": 510
-                },
-                {
-                    "Replica": "frontend-pair-worker2-8569d4669f-jcvfv",
-                    "IP": "172.31.233.203",
-                    "Port": 12001,
-                    "CpuUtil": 0.1389,
-                    "Requests": 0,
-                    "Worker": "worker2",
-                    "Frequency": 4.5,
-                    "CpuRequest": 510
-                },
-                {
-                    "Replica": "frontend-pair-worker3-655c586b5d-qct2w",
-                    "IP": "172.24.182.8",
-                    "Port": 12001,
-                    "CpuUtil": 0,
-                    "Requests": 0,
-                    "Worker": "worker3",
-                    "Frequency": 2.5,
-                    "CpuRequest": 510
-                }
+    "deficient_edge_counts": {
+        "frontend-pair->trigono": {
+            "trigono-worker1-1-655b665c6c-jzbgg": [],
+            "trigono-worker2-568dc6455b-8ctwj": [],
+            "trigono-worker3-599978479c-gzb6f": [],
+            "trigono-worker4-6857596fdb-6bngq": [
+                [
+                    "frontend-pair-worker1-9656c64c6-qw76l",
+                    "trigono-worker4-6857596fdb-6bngq",
+                    6
+                ],
+                [
+                    "frontend-pair-worker2-8569d4669f-jcvfv",
+                    "trigono-worker4-6857596fdb-6bngq",
+                    9
+                ]
+            ],
+            "trigono-worker5-56bd89775-cnj76": [
+                [
+                    "frontend-pair-worker1-9656c64c6-qw76l",
+                    "trigono-worker5-56bd89775-cnj76",
+                    18
+                ]
             ]
         },
-        {
-            "Component": "load-generator",
-            "Replicas": [
-                {
-                    "Replica": "load-generator-worker1-759888dfc9-c7jdp",
-                    "IP": "172.20.235.147",
-                    "Port": 12000,
-                    "CpuUtil": 0.3661,
-                    "Requests": 0,
-                    "Worker": "worker1",
-                    "Frequency": 4.5,
-                    "CpuRequest": 510
-                }
-            ]
-        },
-        {
-            "Component": "trigono",
-            "Replicas": [
-                {
-                    "Replica": "trigono-worker1-1-655b665c6c-jzbgg",
-                    "IP": "172.20.235.146",
-                    "Port": 12002,
-                    "CpuUtil": 0.0606,
-                    "Requests": 0,
-                    "Worker": "worker1",
-                    "Frequency": 4.5,
-                    "CpuRequest": 310
-                },
-                {
-                    "Replica": "trigono-worker2-568dc6455b-8ctwj",
-                    "IP": "172.31.233.204",
-                    "Port": 12002,
-                    "CpuUtil": 0.1216,
-                    "Requests": 0,
-                    "Worker": "worker2",
-                    "Frequency": 4.5,
-                    "CpuRequest": 310
-                },
-                {
-                    "Replica": "trigono-worker3-599978479c-gzb6f",
-                    "IP": "172.24.182.9",
-                    "Port": 12002,
-                    "CpuUtil": 0.001,
-                    "Requests": 0,
-                    "Worker": "worker3",
-                    "Frequency": 2.5,
-                    "CpuRequest": 310
-                },
-                {
-                    "Replica": "trigono-worker4-6857596fdb-6bngq",
-                    "IP": "172.22.33.6",
-                    "Port": 12002,
-                    "CpuUtil": 0.2889,
-                    "Requests": 0,
-                    "Worker": "worker4",
-                    "Frequency": 2.5,
-                    "CpuRequest": 310
-                },
-                {
-                    "Replica": "trigono-worker5-56bd89775-cnj76",
-                    "IP": "172.31.71.198",
-                    "Port": 12002,
-                    "CpuUtil": 0.2544,
-                    "Requests": 0,
-                    "Worker": "worker5",
-                    "Frequency": 3,
-                    "CpuRequest": 310
-                }
+        "load-generator->frontend-pair": {
+            "frontend-pair-worker1-9656c64c6-qw76l": [],
+            "frontend-pair-worker2-8569d4669f-jcvfv": [
+                [
+                    "load-generator-worker1-759888dfc9-c7jdp",
+                    "frontend-pair-worker2-8569d4669f-jcvfv",
+                    39
+                ]
+            ],
+            "frontend-pair-worker3-655c586b5d-qct2w": [
+                [
+                    "load-generator-worker1-759888dfc9-c7jdp",
+                    "frontend-pair-worker3-655c586b5d-qct2w",
+                    22
+                ]
             ]
         }
-    ]
+    },
+    "traffic_results": {
+        "frontend-pair->trigono": {
+            "frontend-pair-worker1-9656c64c6-qw76l": {
+                "trigono-worker3-599978479c-gzb6f": 15,
+                "trigono-worker4-6857596fdb-6bngq": 6,
+                "trigono-worker5-56bd89775-cnj76": 18
+            },
+            "frontend-pair-worker2-8569d4669f-jcvfv": {
+                "trigono-worker1-1-655b665c6c-jzbgg": 26,
+                "trigono-worker4-6857596fdb-6bngq": 9
+            },
+            "frontend-pair-worker3-655c586b5d-qct2w": {
+                "trigono-worker2-568dc6455b-8ctwj": 22
+            }
+        },
+        "load-generator->frontend-pair": {
+            "load-generator-worker1-759888dfc9-c7jdp": {
+                "frontend-pair-worker1-9656c64c6-qw76l": 39,
+                "frontend-pair-worker2-8569d4669f-jcvfv": 39,
+                "frontend-pair-worker3-655c586b5d-qct2w": 22
+            }
+        }
+    }
 }
