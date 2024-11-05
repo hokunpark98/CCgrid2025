@@ -1,60 +1,47 @@
 {
     "deficient_edge_counts": {
         "frontend-pair->trigono": {
-            "trigono-worker1-1-655b665c6c-jzbgg": [],
-            "trigono-worker2-568dc6455b-8ctwj": [],
-            "trigono-worker3-599978479c-gzb6f": [],
             "trigono-worker4-6857596fdb-6bngq": [
-                [
-                    "frontend-pair-worker1-9656c64c6-qw76l",
-                    "trigono-worker4-6857596fdb-6bngq",
-                    6
-                ],
                 [
                     "frontend-pair-worker2-8569d4669f-jcvfv",
                     "trigono-worker4-6857596fdb-6bngq",
-                    9
+                    13
+                ],
+                [
+                    "frontend-pair-worker3-655c586b5d-qct2w",
+                    "trigono-worker4-6857596fdb-6bngq",
+                    2
                 ]
             ],
             "trigono-worker5-56bd89775-cnj76": [
                 [
                     "frontend-pair-worker1-9656c64c6-qw76l",
                     "trigono-worker5-56bd89775-cnj76",
-                    18
+                    13
+                ],
+                [
+                    "frontend-pair-worker2-8569d4669f-jcvfv",
+                    "trigono-worker5-56bd89775-cnj76",
+                    5
                 ]
             ]
         },
-        "load-generator->frontend-pair": {
-            "frontend-pair-worker1-9656c64c6-qw76l": [],
-            "frontend-pair-worker2-8569d4669f-jcvfv": [
-                [
-                    "load-generator-worker1-759888dfc9-c7jdp",
-                    "frontend-pair-worker2-8569d4669f-jcvfv",
-                    39
-                ]
-            ],
-            "frontend-pair-worker3-655c586b5d-qct2w": [
-                [
-                    "load-generator-worker1-759888dfc9-c7jdp",
-                    "frontend-pair-worker3-655c586b5d-qct2w",
-                    22
-                ]
-            ]
-        }
+        "load-generator->frontend-pair": {}
     },
     "traffic_results": {
         "frontend-pair->trigono": {
             "frontend-pair-worker1-9656c64c6-qw76l": {
-                "trigono-worker3-599978479c-gzb6f": 15,
-                "trigono-worker4-6857596fdb-6bngq": 6,
-                "trigono-worker5-56bd89775-cnj76": 18
+                "trigono-worker1-1-655b665c6c-jzbgg": 26,
+                "trigono-worker5-56bd89775-cnj76": 13
             },
             "frontend-pair-worker2-8569d4669f-jcvfv": {
-                "trigono-worker1-1-655b665c6c-jzbgg": 26,
-                "trigono-worker4-6857596fdb-6bngq": 9
+                "trigono-worker2-568dc6455b-8ctwj": 26,
+                "trigono-worker4-6857596fdb-6bngq": 13,
+                "trigono-worker5-56bd89775-cnj76": 5
             },
             "frontend-pair-worker3-655c586b5d-qct2w": {
-                "trigono-worker2-568dc6455b-8ctwj": 22
+                "trigono-worker3-599978479c-gzb6f": 15,
+                "trigono-worker4-6857596fdb-6bngq": 2
             }
         },
         "load-generator->frontend-pair": {

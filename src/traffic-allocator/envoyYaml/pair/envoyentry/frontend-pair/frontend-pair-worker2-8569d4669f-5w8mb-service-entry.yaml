@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: frontend-pair-worker2-8569d4669f-5w8mb-12001
+  namespace: pair
+spec:
+  hosts:
+  - frontend-pair-worker2-8569d4669f-5w8mb
+  addresses:
+  - 172.31.233.211
+  ports:
+  - number: 12001
+    name: http
+    protocol: HTTP
+  resolution: STATIC
+  location: MESH_INTERNAL
+  endpoints:
+  - address: 172.31.233.211
+    ports:
+      http: 12001

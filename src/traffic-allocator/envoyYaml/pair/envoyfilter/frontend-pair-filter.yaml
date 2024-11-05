@@ -1,0 +1,77 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: frontend-pair-filter
+  namespace: pair
+spec:
+  workloadSelector:
+    labels:
+      app: frontend-pair
+  configPatches:
+    - applyTo: HTTP_FILTER
+      match:
+        context: SIDECAR_OUTBOUND
+        listener:
+          filterChain:
+            filter:
+              name: envoy.filters.network.http_connection_manager
+      patch:
+        operation: INSERT_BEFORE
+        value:
+          name: envoy.filters.http.lua
+          typed_config:
+            "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
+            inline_code: |-
+              local pod_ip = nil
+              local counters = {}
+
+              function envoy_on_request(request_handle)
+                if not pod_ip then
+                  local handle = io.popen("hostname -i")
+                  pod_ip = handle:read("*a"):match("^%s*(.-)%s*$")
+                  handle:close()
+                end
+
+                local required_vars = 3
+                for i = 1, required_vars do
+                  if not counters[i] then
+                    counters[i] = 0
+                  end
+                end
+
+                local destination = request_handle:headers():get(":authority")
+                local domain = destination:match("^([^:]+)")
+
+                if domain == "trigono" then
+                  local new_destination = nil
+                  if pod_ip == "172.20.235.154" then
+                    counters[1] = counters[1] + 1
+                    local sequence = { "trigono-worker3-8464846f97-7ld59", "trigono-worker3-8464846f97-7ld59", "trigono-worker3-8464846f97-7ld59", "trigono-worker3-8464846f97-7ld59" }
+                    new_destination = sequence[counters[1]]
+                    if counters[1] > #sequence then
+                      counters[1] = 1
+                    end
+                  end
+                  if pod_ip == "172.31.233.211" then
+                    counters[2] = counters[2] + 1
+                    local sequence = { "trigono-worker3-8464846f97-7ld59", "trigono-worker3-8464846f97-7ld59", "trigono-worker3-8464846f97-7ld59", "trigono-worker3-8464846f97-7ld59" }
+                    new_destination = sequence[counters[2]]
+                    if counters[2] > #sequence then
+                      counters[2] = 1
+                    end
+                  end
+                  if pod_ip == "172.24.182.16" then
+                    counters[3] = counters[3] + 1
+                    local sequence = { "trigono-worker3-8464846f97-7ld59", "trigono-worker3-8464846f97-7ld59", "trigono-worker3-8464846f97-7ld59", "trigono-worker3-8464846f97-7ld59" }
+                    new_destination = sequence[counters[3]]
+                    if counters[3] > #sequence then
+                      counters[3] = 1
+                    end
+                  end
+                  if new_destination then
+                    local new_destination_with_port = new_destination .. destination:match("(:.*)$")
+                    request_handle:headers():replace(":authority", new_destination_with_port)
+                    request_handle:headers():replace("Host", new_destination_with_port)
+                  end
+                end
+              end

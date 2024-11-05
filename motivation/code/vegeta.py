@@ -8,7 +8,7 @@ import requests
 import json
 import time
 
-PROMETHEUS_URL = 'http://10.104.130.33:8080/api/v1/query'
+PROMETHEUS_URL = 'http://10.107.204.182:8080/api/v1/query'
 
 if '-h' in sys.argv or '--help' in sys.argv:
     print('usage:', file=sys.stderr)
@@ -29,8 +29,8 @@ result_folder = '/home/dnc/hokun/CCgrid2025/motivation/results'
 os.makedirs(result_folder, exist_ok=True)
 
 # Set duration (in minutes) and rate (requests per minute)
-RATE_PER_MINUTES = [500]    
-DURATION = 300
+RATE_PER_MINUTES = [200]    
+DURATION = 600
 NAMESPACE = "pair"
 
 def query_prometheus(promql_query):
@@ -95,4 +95,4 @@ for rate_per_minute in RATE_PER_MINUTES:
     
     print(f'Results for {rate_per_minute} saved to {final_filename}')
 
-    time.sleep(120) #이전 결과가 영향 주지 않도록
+    #time.sleep(120) #이전 결과가 영향 주지 않도록
