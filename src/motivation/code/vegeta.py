@@ -23,14 +23,14 @@ now = datetime.now()
 print("현재 시간: ", now)
 
 # Set the result folder path
-result_folder = '/home/dnc/hokun/CCgrid2025/motivation/results'
+result_folder = '/home/dnc/hokun/CCgrid2025/src/motivation/results'
 
 # Create the folder if it doesn't exist
 os.makedirs(result_folder, exist_ok=True)
 
 # Set duration (in minutes) and rate (requests per minute)
 RATE_PER_MINUTES = [200]    
-DURATION = 600
+DURATION = 120
 NAMESPACE = "pair"
 
 def query_prometheus(promql_query):

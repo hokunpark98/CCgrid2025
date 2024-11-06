@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hpa-config
+  namespace: hk-sched
+data:
+  NAMESPACE: "hk-sched" # 원하는 네임스페이스로 설정 가능
+  METRIC_PERIOD: "30" # 메트릭 수집 주기 (초 단위)
+  PORT: "8080" # 기본 포트

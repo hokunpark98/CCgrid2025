@@ -87,6 +87,14 @@ def generate_lua_code(result, destination_component):
     lua_lines = [
         'local pod_ip = nil',
         'local counters = {}',  # Array to dynamically store counters
+        'local status_value = 0',     # To check status >= 400
+        f'local required_vars = {len(result)}',  # Number of unique IPs (replicas)         
+        '',               
+        'for i = 1, required_vars do',
+        '  if not counters[i] then',
+        '    counters[i] = 0',  # Initialize each counter to 0',
+        '  end',
+        'end',
         '',
         'function envoy_on_request(request_handle)',
         '  if not pod_ip then',
@@ -95,17 +103,10 @@ def generate_lua_code(result, destination_component):
         '    handle:close()',
         '  end',
         '',
-        f'  local required_vars = {len(result)}',  # Number of unique IPs (replicas)
-        '  for i = 1, required_vars do',
-        '    if not counters[i] then',
-        '      counters[i] = 0',  # Initialize each counter to 0
-        '    end',
-        '  end',
-        '',
         '  local destination = request_handle:headers():get(":authority")',
         '  local domain = destination:match("^([^:]+)")',
         '',
-        f'  if domain == "{destination_component}" then',
+        f'  if domain == "{destination_component}" and status_value == 0 then',
         '    local new_destination = nil',
     ]
 
@@ -121,10 +122,10 @@ def generate_lua_code(result, destination_component):
         sequence_elements = ', '.join(f'"{dest}"' for dest in allocation_sequence)
         lua_lines.append(f'      local sequence = {{ {sequence_elements} }}')
 
-        lua_lines.append(f'      new_destination = sequence[counters[{index}]]')
         lua_lines.append(f'      if counters[{index}] > #sequence then')
         lua_lines.append(f'        counters[{index}] = 1')
         lua_lines.append('      end')
+        lua_lines.append(f'      new_destination = sequence[counters[{index}]]')
         lua_lines.append('    end')
 
     lua_lines.append('    if new_destination then')
@@ -132,6 +133,14 @@ def generate_lua_code(result, destination_component):
     lua_lines.append('      request_handle:headers():replace(":authority", new_destination_with_port)')
     lua_lines.append('      request_handle:headers():replace("Host", new_destination_with_port)')
     lua_lines.append('    end')
+    lua_lines.append('  end')
+    lua_lines.append('end')
+    lua_lines.append('')
+    lua_lines.append('function envoy_on_response(response_handle)')
+    lua_lines.append('  local status_code = tonumber(response_handle:headers():get(":status"))')
+    lua_lines.append('')
+    lua_lines.append('  if status_code >= 400 then')
+    lua_lines.append('    status_value = 1')
     lua_lines.append('  end')
     lua_lines.append('end')
 

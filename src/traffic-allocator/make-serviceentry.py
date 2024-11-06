@@ -1,7 +1,6 @@
 import os
 import yaml
 import requests
-from yaml.representer import SafeRepresenter
 import urllib.parse as urlparse
 from urllib.parse import parse_qs
 
@@ -20,7 +19,8 @@ def fetch_json_data(url):
     response.raise_for_status()  # Raise an error for bad status codes
     return response.json()
 
-def create_service_entry_yaml(replica_data, component_folder, namespace):
+def create_service_entry_yaml(replica_data, namespace):
+    """Create a single ServiceEntry YAML structure."""
     replica_name = replica_data['Replica']
     ip_address = replica_data['IP']
     port = replica_data['Port']
@@ -55,11 +55,13 @@ def create_service_entry_yaml(replica_data, component_folder, namespace):
             ]
         }
     }
+    return service_entry
 
-    # Write YAML file
-    file_name = os.path.join(component_folder, f"{replica_name}-service-entry.yaml")
+def write_service_entries(service_entries, base_folder, component_name):
+    file_name = os.path.join(base_folder, f"{component_name}-service-entries.yaml")
+    print(file_name)
     with open(file_name, 'w') as yaml_file:
-        yaml.dump(service_entry, yaml_file, sort_keys=False, default_flow_style=False)
+        yaml.dump_all(service_entries, yaml_file, sort_keys=False, default_flow_style=False)
 
 def main():
     # URL 설정
@@ -81,14 +83,11 @@ def main():
     # 컴포넌트별 폴더 생성 및 YAML 파일 작성
     for component in metrics_data.get('Components', []):
         component_name = component['Component']
-        
-        # 각 컴포넌트에 대한 폴더 생성
-        component_folder = os.path.join(base_folder, component_name)
-        os.makedirs(component_folder, exist_ok=True)
 
-        # 각 레플리카에 대해 ServiceEntry YAML 파일 생성
-        for replica in component['Replicas']:
-            create_service_entry_yaml(replica, component_folder, namespace)
+        # 각 레플리카에 대해 ServiceEntry 구조 생성 후 모으기
+        service_entries = [create_service_entry_yaml(replica, namespace) for replica in component['Replicas']]
+        # 모은 ServiceEntry 구조를 하나의 파일로 기록
+        write_service_entries(service_entries, base_folder, component_name)
 
 if __name__ == "__main__":
     main()

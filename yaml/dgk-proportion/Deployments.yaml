@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hpa-autoscaling-metrics
+  namespace: hk-sched
+  labels:
+    app: hpa-autoscaling-metrics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hpa-autoscaling-metrics
+  template:
+    metadata:
+      labels:
+        app: hpa-autoscaling-metrics
+    spec:
+      containers:
+        - name: hpa-autoscaling-metrics
+          image: kdonggyun97/k8s-autoscaling-metrics:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: hpa-config

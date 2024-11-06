@@ -1,0 +1,104 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: trigono-worker1-5b87c56bc9-6vffg-12002
+  namespace: pair
+spec:
+  hosts:
+    - trigono-worker1-5b87c56bc9-6vffg
+  addresses:
+    - 172.20.235.153
+  ports:
+    - number: 12002
+      name: http
+      protocol: HTTP
+  resolution: STATIC
+  location: MESH_INTERNAL
+  endpoints:
+    - address: 172.20.235.153
+      ports:
+        http: 12002
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: trigono-worker2-7b59c5bbfb-wzqv6-12002
+  namespace: pair
+spec:
+  hosts:
+    - trigono-worker2-7b59c5bbfb-wzqv6
+  addresses:
+    - 172.31.233.210
+  ports:
+    - number: 12002
+      name: http
+      protocol: HTTP
+  resolution: STATIC
+  location: MESH_INTERNAL
+  endpoints:
+    - address: 172.31.233.210
+      ports:
+        http: 12002
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: trigono-worker3-8464846f97-7ld59-12002
+  namespace: pair
+spec:
+  hosts:
+    - trigono-worker3-8464846f97-7ld59
+  addresses:
+    - 172.24.111.15
+  ports:
+    - number: 12002
+      name: http
+      protocol: HTTP
+  resolution: STATIC
+  location: MESH_INTERNAL
+  endpoints:
+    - address: 172.24.111.15
+      ports:
+        http: 12002
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: trigono-worker4-6bf76cfcd6-kfq67-12002
+  namespace: pair
+spec:
+  hosts:
+    - trigono-worker4-6bf76cfcd6-kfq67
+  addresses:
+    - 172.22.33.12
+  ports:
+    - number: 12002
+      name: http
+      protocol: HTTP
+  resolution: STATIC
+  location: MESH_INTERNAL
+  endpoints:
+    - address: 172.22.33.12
+      ports:
+        http: 12002
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: trigono-worker5-68895c6587-rj9sn-12002
+  namespace: pair
+spec:
+  hosts:
+    - trigono-worker5-68895c6587-rj9sn
+  addresses:
+    - 172.31.71.209
+  ports:
+    - number: 12002
+      name: http
+      protocol: HTTP
+  resolution: STATIC
+  location: MESH_INTERNAL
+  endpoints:
+    - address: 172.31.71.209
+      ports:
+        http: 12002
