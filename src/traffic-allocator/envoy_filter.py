@@ -2,7 +2,6 @@ import os
 import yaml
 from utils import LiteralUnicode
 
-
 def generate_lua_code(result, destination_component):
     lua_lines = [
         'local pod_ip = nil',
