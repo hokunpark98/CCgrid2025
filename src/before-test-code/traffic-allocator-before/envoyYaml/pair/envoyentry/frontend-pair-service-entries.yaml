@@ -28,7 +28,7 @@ spec:
   hosts:
     - frontend-pair-worker2-8569d4669f-5w8mb
   addresses:
-    - 172.31.233.211
+    - 172.31.111.111
   ports:
     - number: 12001
       name: http
@@ -36,7 +36,7 @@ spec:
   resolution: STATIC
   location: MESH_INTERNAL
   endpoints:
-    - address: 172.31.233.211
+    - address: 172.31.111.111
       ports:
         http: 12001
 ---
