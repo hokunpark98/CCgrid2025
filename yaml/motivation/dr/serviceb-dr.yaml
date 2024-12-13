@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: serviceb-dr
+  namespace: pair
+spec:
+  host: serviceb
+  subsets:
+  - labels:
+      version: serviceb2
+    name: serviceb2
+  - labels:
+      version: serviceb1
+    name: serviceb1
+  - labels:
+      version: serviceb3
+    name: serviceb3
+  trafficPolicy:
+    loadBalancer:
+      simple: LEAST_REQUEST

@@ -1,0 +1,119 @@
+{
+    "Namespace": "pair",
+    "Components": [
+        {
+            "Component": "servicea",
+            "Replicas": [
+                {
+                    "Replica": "servicea1-7fc76c6bd4-ml8m8",
+                    "ReplicaVersion": "servicea1",
+                    "IP": "172.30.119.55",
+                    "Port": 11000,
+                    "CpuUtil": 1048.9657,
+                    "Requests": 5925,
+                    "Worker": "younha",
+                    "Frequency": 0,
+                    "CpuRequest": 5010
+                }
+            ]
+        },
+        {
+            "Component": "serviceb",
+            "Replicas": [
+                {
+                    "Replica": "serviceb1-68497c9ccd-z5pm6",
+                    "ReplicaVersion": "serviceb1",
+                    "IP": "172.20.235.177",
+                    "Port": 11001,
+                    "CpuUtil": 17.2209,
+                    "Requests": 560,
+                    "Worker": "worker1",
+                    "Frequency": 4.5,
+                    "CpuRequest": 510
+                },
+                {
+                    "Replica": "serviceb2-77657d8c76-ngb8x",
+                    "ReplicaVersion": "serviceb2",
+                    "IP": "172.31.233.219",
+                    "Port": 11001,
+                    "CpuUtil": 16.1796,
+                    "Requests": 571,
+                    "Worker": "worker2",
+                    "Frequency": 4.5,
+                    "CpuRequest": 510
+                },
+                {
+                    "Replica": "serviceb3-67bd7bfcf8-rmppz",
+                    "ReplicaVersion": "serviceb3",
+                    "IP": "172.24.182.42",
+                    "Port": 11001,
+                    "CpuUtil": 90.7683,
+                    "Requests": 8019,
+                    "Worker": "worker3",
+                    "Frequency": 2.5,
+                    "CpuRequest": 510
+                }
+            ]
+        },
+        {
+            "Component": "servicec",
+            "Replicas": [
+                {
+                    "Replica": "servicec1-57c6fbd58c-lhks6",
+                    "ReplicaVersion": "servicec1",
+                    "IP": "172.20.235.178",
+                    "Port": 11002,
+                    "CpuUtil": 6.6797,
+                    "Requests": 344,
+                    "Worker": "worker1",
+                    "Frequency": 4.5,
+                    "CpuRequest": 510
+                },
+                {
+                    "Replica": "servicec2-698c5749bf-cs8q7",
+                    "ReplicaVersion": "servicec2",
+                    "IP": "172.31.233.224",
+                    "Port": 11002,
+                    "CpuUtil": 6.1574,
+                    "Requests": 317,
+                    "Worker": "worker2",
+                    "Frequency": 4.5,
+                    "CpuRequest": 510
+                },
+                {
+                    "Replica": "servicec3-97c68998c-2rh2w",
+                    "ReplicaVersion": "servicec3",
+                    "IP": "172.24.182.43",
+                    "Port": 11002,
+                    "CpuUtil": 21.308,
+                    "Requests": 1357,
+                    "Worker": "worker3",
+                    "Frequency": 2.5,
+                    "CpuRequest": 510
+                },
+                {
+                    "Replica": "servicec4-799f68bbd4-7m4h9",
+                    "ReplicaVersion": "servicec4",
+                    "IP": "172.20.235.179",
+                    "Port": 11002,
+                    "CpuUtil": 19.6529,
+                    "Requests": 849,
+                    "Worker": "worker1",
+                    "Frequency": 4.5,
+                    "CpuRequest": 510
+                },
+                {
+                    "Replica": "servicec5-658dbf7bb4-8qh6c",
+                    "ReplicaVersion": "servicec5",
+                    "IP": "172.31.233.225",
+                    "Port": 11002,
+                    "CpuUtil": 18.2874,
+                    "Requests": 855,
+                    "Worker": "worker2",
+                    "Frequency": 4.5,
+                    "CpuRequest": 510
+                }
+            ]
+        }
+    ]
+}

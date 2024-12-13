@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from algorithm import *
-from smooth_interleave import *
+from kubernetes import client, config
+
 
 app = Flask(__name__)
 
@@ -9,7 +10,6 @@ def traffic_scheduling():
     # Retrieve query parameters
     value = request.args.get('value')
     namespace = request.args.get('namespace')
-    algorithm = request.args.get('algorithm', 'default')  # Default algorithm can be updated later
 
     # Validate required parameters
     if not value or not namespace:
@@ -18,6 +18,7 @@ def traffic_scheduling():
     # Construct URLs for fetching DAG and metrics data
     dag_url = f"http://10.96.9.243:21001/dag?value={value}&namespace={namespace}"
     metrics_url = f"http://10.96.9.243:21001/metrics?value={value}&namespace={namespace}"
+    vsdrpath = "/home/dnc/hokun/CCgrid2025/yaml/motivation"
 
     try:
         # 데이터 가져오기
@@ -30,21 +31,22 @@ def traffic_scheduling():
         root_components = find_root_components(component_graph)
 
         # 트래픽 수신량 및 용량 초기화
-        traffic_received, traffic_capacity = initialize_traffic(component_replicas, root_components)
+        traffic_capacity = initialize_traffic(component_replicas, root_components)
 
-        # 트래픽 할당 수행
-        traffic_results, deficient_edge_counts = perform_traffic_allocation(
-            G, component_graph, component_replicas, traffic_received, traffic_capacity
+        # Kube config 로드 및 custom_objects_api 생성
+        config.load_kube_config()
+        custom_objects_api = client.CustomObjectsApi()
+
+        # 트래픽 할당 수행 (custom_objects_api 추가)
+        traffic_results, component_replicas, namespace = perform_traffic_allocation(
+            G, component_graph, component_replicas, traffic_capacity, namespace
         )
 
-        final_results = process_traffic_allocation(traffic_results, metrics_data)
-        #print_results(traffic_results, deficient_edge_counts)
+        update_istio_configs(traffic_results, component_replicas, namespace, vsdrpath, custom_objects_api)
 
         # Return the results in JSON format
         return jsonify({
             'traffic_results': traffic_results,
-            'deficient_edge_counts': deficient_edge_counts,
-            'final_results': final_results,
             'metrics_data': metrics_data
         })
 
@@ -53,4 +55,4 @@ def traffic_scheduling():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=21002)
+    app.run(host='0.0.0.0', port=21000)

@@ -1,0 +1,34 @@
+# Deployment 생성 - node-metric-collector 컨테이너 배포
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-metric-collector-deployment
+  namespace: hk-sched
+  labels:
+    app: node-metric-collector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-metric-collector
+  template:
+    metadata:
+      labels:
+        app: node-metric-collector
+    spec:
+      serviceAccountName: node-metric-collector-sa # ServiceAccount 설정
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"
+      containers:
+        - name: node-metric-collector
+          image: hokunpark/node-metric-collector:v1
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: "2000m"
+              memory: "2Gi"
+            limits:
+              cpu: "2000m"
+              memory: "2Gi"

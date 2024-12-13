@@ -1,0 +1,52 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: serviceb-to-servicec-vs
+  namespace: pair
+spec:
+  hosts:
+  - servicec
+  http:
+  - match:
+    - sourceLabels:
+        app: serviceb
+        version: serviceb1
+    route:
+    - destination:
+        host: servicec
+        subset: servicec1
+      weight: 56
+    - destination:
+        host: servicec
+        subset: servicec4
+      weight: 44
+  - match:
+    - sourceLabels:
+        app: serviceb
+        version: serviceb2
+    route:
+    - destination:
+        host: servicec
+        subset: servicec2
+      weight: 56
+    - destination:
+        host: servicec
+        subset: servicec5
+      weight: 44
+  - match:
+    - sourceLabels:
+        app: serviceb
+        version: serviceb3
+    route:
+    - destination:
+        host: servicec
+        subset: servicec3
+      weight: 55
+    - destination:
+        host: servicec
+        subset: servicec4
+      weight: 23
+    - destination:
+        host: servicec
+        subset: servicec5
+      weight: 23

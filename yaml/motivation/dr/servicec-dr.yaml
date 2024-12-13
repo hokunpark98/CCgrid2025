@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: servicec-dr
+  namespace: pair
+spec:
+  host: servicec
+  subsets:
+  - labels:
+      version: servicec2
+    name: servicec2
+  - labels:
+      version: servicec5
+    name: servicec5
+  - labels:
+      version: servicec3
+    name: servicec3
+  - labels:
+      version: servicec1
+    name: servicec1
+  - labels:
+      version: servicec4
+    name: servicec4
+  trafficPolicy:
+    loadBalancer:
+      simple: LEAST_REQUEST
